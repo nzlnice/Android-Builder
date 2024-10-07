@@ -5,7 +5,7 @@
       "repo": "https://github.com/nzlnice/Xiaomi_Kernel_OpenSource.git",
       "branch": "crux-p-oss",
       "device": "crux",
-      "defconfig": "crux_defconfig"
+      "defconfig": "crux_user_defconfig"
     },
     "toolchains": [
       {
