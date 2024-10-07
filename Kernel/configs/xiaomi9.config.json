@@ -1,11 +1,11 @@
 [
   {
     "kernelSource": {
-      "name": "Xiaomi9KernelPoweredBySeparate",
-      "repo": "https://github.com/Separatee/AllinOneKernel",
-      "branch": "main",
-      "device": "cepheus",
-      "defconfig": "cepheus_defconfig"
+      "name": "Xiaomi9pro",
+      "repo": "https://github.com/nzlnice/crux-marisa.git",
+      "branch": "crux",
+      "device": "crux",
+      "defconfig": "crux_defconfig"
     },
     "toolchains": [
       {
