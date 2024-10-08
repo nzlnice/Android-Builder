@@ -5,7 +5,7 @@
       "repo": "https://github.com/nzlnice/android_kernel_xiaomi_sm8150.git",
       "branch": "14.0",
       "device": "crux",
-      "defconfig": "crux_defconfig"
+      "defconfig": "c_defconfig"
     },
     "toolchains": [
       {
