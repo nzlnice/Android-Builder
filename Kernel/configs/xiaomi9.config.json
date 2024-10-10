@@ -2,10 +2,10 @@
   {
     "kernelSource": {
       "name": "Xiaomi9pro-openela",
-      "repo": "https://github.com/nzlnice/crux_los.git",
+      "repo": "https://github.com/nzlnice/los-8150.git",
       "branch": "lineage-21",
       "device": "crux",
-      "defconfig": "p_defconfig"
+      "defconfig": "sm8150-perf_defconfig"
     },
     "toolchains": [
       {
