@@ -5,7 +5,7 @@
       "repo": "https://github.com/nzlnice/lineage-crux.git",
       "branch": "lineage-21",
       "device": "crux",
-      "defconfig": "crux_defconfig"
+      "defconfig": "m_defconfig"
     },
     "toolchains": [
       {
