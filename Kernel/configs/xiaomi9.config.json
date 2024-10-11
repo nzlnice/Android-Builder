@@ -5,7 +5,7 @@
       "repo": "https://github.com/nzlnice/los-8150.git",
       "branch": "lineage-21",
       "device": "crux",
-      "defconfig": "sm8150-perf_defconfig"
+      "defconfig": "crux_defconfig"
     },
     "toolchains": [
       {
