@@ -3,9 +3,9 @@
     "kernelSource": {
       "name": "Xiaomi9pro-openela",
       "repo": "https://github.com/nzlnice/CRDROID.git",
-      "branch": "14.0-raphael",
+      "branch": "14.0-20240807",
       "device": "crux",
-      "defconfig": "W_defconfig"
+      "defconfig": "CR_defconfig"
     },
     "toolchains": [
       {
