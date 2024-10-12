@@ -5,7 +5,7 @@
       "repo": "https://github.com/nzlnice/crux-marisa.git",
       "branch": "android14",
       "device": "crux",
-      "defconfig": "c_defconfig"
+      "defconfig": "cepheus_defconfig"
     },
     "toolchains": [
       {
