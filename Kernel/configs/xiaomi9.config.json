@@ -3,7 +3,7 @@
     "kernelSource": {
       "name": "Xiaomi9pro",
       "repo": "https://github.com/nzlnice/crux-marisa.git",
-      "branch": "android14",
+      "branch": "crux",
       "device": "crux",
       "defconfig": "crux_defconfig"
     },
