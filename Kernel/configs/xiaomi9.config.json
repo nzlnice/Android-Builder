@@ -2,10 +2,10 @@
   {
     "kernelSource": {
       "name": "Xiaomi9pro-openela",
-      "repo": "https://github.com/nzlnice/lineage-crux.git",
-      "branch": "lineage-21",
+      "repo": "https://github.com/nzlnice/kernel_xiaomi_raphael.git",
+      "branch": "Rikka-v5",
       "device": "crux",
-      "defconfig": "m_defconfig"
+      "defconfig": "Q_defconfig"
     },
     "toolchains": [
       {
