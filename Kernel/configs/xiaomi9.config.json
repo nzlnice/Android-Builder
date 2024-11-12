@@ -1,7 +1,7 @@
 [
   {
     "kernelSource": {
-      "name": "Xiaomi9pro-openela",
+      "name": "mi9pro",
       "repo": "https://github.com/nzlnice/crdroid-sm8150.git",
       "branch": "15.0",
       "device": "crux",
