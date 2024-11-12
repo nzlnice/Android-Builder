@@ -2,7 +2,7 @@
   {
     "kernelSource": {
       "name": "Xiaomi9pro",
-      "repo": "https://github.com/nzlnice/marisa.gitt",
+      "repo": "https://github.com/nzlnice/marisa.git",
       "branch": "main",
       "device": "crux",
       "defconfig": "crux_defconfig"
