@@ -2,8 +2,8 @@
   {
     "kernelSource": {
       "name": "Xiaomi9pro",
-      "repo": "https://github.com/TheVoyager0777/Kernel_Xiaomi_SM8150_R.git",
-      "branch": "miuicx-v2",
+      "repo": "https://github.com/nzlnice/marisa-openela.git",
+      "branch": "main",
       "device": "crux",
       "defconfig": "crux_defconfig"
     },
