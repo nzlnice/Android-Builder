@@ -3,7 +3,7 @@
     "kernelSource": {
       "name": "Xiaomi9pro",
       "repo": "https://github.com/nzlnice/crdroid.git",
-      "branch": "test",
+      "branch": "15.0",
       "device": "crux",
       "defconfig": "crux_defconfig"
     },
