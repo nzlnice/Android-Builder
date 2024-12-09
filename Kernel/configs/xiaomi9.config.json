@@ -2,8 +2,8 @@
   {
     "kernelSource": {
       "name": "Xiaomi9pro",
-      "repo": "https://github.com/Feather-cockscomb/android_kernel_xiaomi_sm8150.git",
-      "branch": "erofs+dsu",
+      "repo": "https://github.com/nzlnice/crux-marisa.git",
+      "branch": "haptic",
       "device": "crux",
       "defconfig": "crux_defconfig"
     },
