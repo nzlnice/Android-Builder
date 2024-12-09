@@ -2,8 +2,8 @@
   {
     "kernelSource": {
       "name": "Xiaomi9pro",
-      "repo": "https://github.com/nzlnice/crdroid.git",
-      "branch": "15.0",
+      "repo": "https://github.com/nzlnice/android_kernel_xiaomi_crux.git",
+      "branch": "android-13",
       "device": "crux",
       "defconfig": "crux_defconfig"
     },
