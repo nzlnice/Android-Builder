@@ -2,8 +2,8 @@
   {
     "kernelSource": {
       "name": "Xiaomi9pro",
-      "repo": "https://github.com/nzlnice/crux-marisa.git",
-      "branch": "haptic",
+      "repo": "https://github.com/nzlnice/android_kernel_xiaomi_crux.git",
+      "branch": "test",
       "device": "crux",
       "defconfig": "crux_defconfig"
     },
