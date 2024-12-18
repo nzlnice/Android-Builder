@@ -5,7 +5,7 @@
       "repo": "https://github.com/nzlnice/crux-marisa.git",
       "branch": "dsu",
       "device": "crux",
-      "defconfig": "crux_user_defconfig"
+      "defconfig": "crux_defconfig"
     },
     "toolchains": [
       {
