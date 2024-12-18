@@ -2,10 +2,10 @@
   {
     "kernelSource": {
       "name": "Xiaomi9pro",
-      "repo": "https://github.com/nzlnice/android_kernel_xiaomi_crux.git",
-      "branch": "test",
+      "repo": "https://github.com/nzlnice/q.git",
+      "branch": "main",
       "device": "crux",
-      "defconfig": "crux_defconfig"
+      "defconfig": "crux_user_defconfig"
     },
     "toolchains": [
       {
