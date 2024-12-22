@@ -3,7 +3,7 @@
     "kernelSource": {
       "name": "mi9pro",
       "repo": "https://github.com/nzlnice/crux-marisa.git",
-      "branch": "op",
+      "branch": "openela",
       "device": "crux",
       "defconfig": "crux_defconfig"
     },
