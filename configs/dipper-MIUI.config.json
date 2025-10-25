@@ -9,7 +9,7 @@
     },
     "KSU": {
       "enable": true,
-      "ExtPatch": true,
+      "ExtPatch": false,
       "Variant": "ycrksu"
     },
     "enableCcache": true,
