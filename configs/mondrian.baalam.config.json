@@ -41,8 +41,11 @@
               "branch": "k60"
             }
           },
-          "enableKernelSU": true, 
-          "enableKernelSUExtPatch": false,
+          "KSU": {
+            "enable": true,
+            "ExtPatch": true,
+            "Variant": "ycrksu"
+          },
           "enableLXC": false        
     }
 ]

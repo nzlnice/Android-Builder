@@ -48,7 +48,7 @@
     "params": {
       "ARCH": "arm64",
       "CC": "proton-clang/bin/clang",
-      "externalCommand": {
+      "externalCommands": {
         "CROSS_COMPILE": "proton-clang/bin/aarch64-linux-gnu-",
         "CROSS_COMPILE_ARM32": "proton-clang/bin/arm-linux-gnueabi-",
         "LD": "proton-clang/bin/ld.lld",
@@ -79,7 +79,11 @@
       "device": "thyme",
       "defconfig": "thyme_defconfig"
     },
-    "withKernelSU": true,
+    "KSU": {
+      "enable": true,
+      "ExtPatch": true,
+      "Varient": "ycrksu"
+    },
     "toolchains": [
       {
         "repo": "https://github.com/kdrag0n/proton-clang",
@@ -123,7 +127,11 @@
       "device": "thyme",
       "defconfig": "thyme_defconfig"
     },
-    "withKernelSU": false,
+    "KSU": {
+      "enable": true,
+      "ExtPatch": true,
+      "Varient": "ycrksu"
+    },
     "toolchains": [
       {
         "repo": "https://github.com/kdrag0n/proton-clang",
@@ -176,7 +184,11 @@
     "device": "",
     "defconfig": ""
   },
-  "withKernelSU": false,
+    "KSU": {
+      "enable": false,
+      "ExtPatch": false,
+      "Varient": ""
+    },
   "toolchains": [
     {
       "repo": "",
@@ -209,9 +221,11 @@
 | 字段名称     | 描述                                                                                           |
 | ------------ | ---------------------------------------------------------------------------------------------- |
 | kernelSource | 内核源代码的相关信息，包括名称、仓库地址、分支和设备类型。                                     |
-| withKernelSU | 一个布尔值，表示是否使用了名为 `KernelSU` 的内核补丁。                                         |
+| KSU          | 一个对象，包含了启用KSU补丁的相关信息，包括启用，使用变体和额外补丁                            |
 | toolchains   | 一个数组，包含了需要用到的工具链的相关信息，包括仓库地址、分支和名称。                         |
 | ccache       | 一个布尔值，表示是否使用了名为 `ccache` 的编译工具来加速编译。                                 |
+| enableLXC    | 一个布尔值，表示是否使用了名为 `LXC docker` 的补丁。                                           |
+| enableBBG    | 一个布尔值，表示是否使用了名为 `Baseband_guard` 的基带保护补丁。                               |
 | params       | 一个对象，包含了构建参数的相关信息，其中包括了架构类型、交叉编译器、编译器等信息。             |
 | AnyKernel3   | 一个对象，包含了构建内核刷机包的相关信息，其中包括了使用的 `AnyKernel3` 仓库地址、分支等信息。 |
 
@@ -224,6 +238,15 @@
 | `branch`         | 字符串 | 内核源码所在分支 | 对应仓库的指定分支                                                     |
 | `device`         | 字符串 | 设备代号         | 所需要编译的设备代号或者名称，会在发布的时候使用此字段                 |
 | `defconfig`      | 字符串 | 内核配置文件名称 | 对应编译的 `defconfig` 文件前缀，例如 `thyme_defconfig` 就填写 `thyme` |
+
+### KSU补丁(KSU)
+
+| KSU补丁 相关参数 | 类型   | 说明             | 详细说明                                                               |
+| ---------------- | ------ | ---------------- | ---------------------------------------------------------------------- |
+| `enable`         | 布尔值 | 是否启用         | 启用名为 `KernelSU` 的补丁                                             |
+| `Extpatch`       | 布尔值 | 是否需要额外补丁 | 内核源码的 `git` 仓库地址                                              |
+| `Varient`        | 字符串 | KernelSU分支     | 对应 `KernelSU` 的指定分支                                             |
+
 
 ### 工具链配置(toolchains)
 

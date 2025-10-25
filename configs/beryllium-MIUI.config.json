@@ -7,9 +7,12 @@
       "device": "beryllium",
       "defconfig": "beryllium_user_defconfig"
     },
-    "enableKernelSU": true,
+    "KSU": {
+      "enable": true,
+      "ExtPatch": true,
+      "Variant": "ycrksu"
+    },
     "enableCcache": true,
-    "enableKernelSUExtPatch": false,
     "enableLXC": false,
     "toolchains": [
       {

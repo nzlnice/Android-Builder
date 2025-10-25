@@ -6,10 +6,15 @@
       "branch": "t-caf-ksu",
       "device": "ursa",
       "defconfig": "nogravity-ursa_defconfig"
+      },
+     "KSU": {
+      "enable": true,
+      "ExtPatch": false,
+      "Variant": "ycrksu"
     },
-    "enableKernelSU": true,
+
     "enableCcache": true,
-    "enableKernelSUExtPatch": false,
+
     "enableLXC": false,
     "toolchains": [
       {

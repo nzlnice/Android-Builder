@@ -8,8 +8,11 @@
       "defconfig": "vendor/phoenix_ztc1997_defconfig"
     },
     "enableCcache": true,
-    "enableKernelSU": true,
-    "enableKernelSUExtPatch": false,
+    "KSU": {
+      "enable": true,
+      "ExtPatch": true,
+      "Variant": "ycrksu"
+    },
     "enableLXC": false,
     "toolchains": [
       {

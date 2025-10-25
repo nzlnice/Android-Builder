@@ -45,8 +45,11 @@
             }
 
           },
-          "enableKernelSU": true,
-          "enableKernelSUExtPatch": true,
+          "KSU": {
+            "enable": true,
+            "ExtPatch": true,
+            "Variant": "ycrksu"
+          },
           "enableLXC": false
     }
 ]

@@ -7,9 +7,12 @@
       "device": "dipper",
       "defconfig": "nogravity-dipper_defconfig"
     },
-    "enableKernelSU": true,
+    "KSU": {
+      "enable": true,
+      "ExtPatch": true,
+      "Variant": "ycrksu"
+    },
     "enableCcache": true,
-    "enableKernelSUExtPatch": false,
     "enableLXC": false,
     "toolchains": [
       {

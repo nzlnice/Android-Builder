@@ -7,9 +7,12 @@
       "device": "perseus",
       "defconfig": "nogravity-perseus_defconfig"
     },
-    "enableKernelSU": true,
+    "KSU": {
+      "enable": true,
+      "ExtPatch": false,
+      "Variant": "ycrksu"
+    },
     "enableCcache": true,
-    "enableKernelSUExtPatch": false,
     "enableLXC": false,
     "toolchains": [
       {
