@@ -1,4 +1,4 @@
-name: Build kernels vanlia
+name: Build kernels
 
 on:
   push:
@@ -16,7 +16,7 @@ jobs:
       CONFIGS: ${{ steps.generate-matrix.outputs.CONFIGS }}
       BUILD_DATE: ${{ steps.generate-builddate.outputs.BUILDDATE }}
     steps:
-      # This action checks-out your CONFIGSitory under $GITHUB_WORKSPACE, so your workflow can access it.
+      # This action checks-out your CONFIGS directory under $GITHUB_WORKSPACE, so your workflow can access it.
       - name: 😄 Checkout
         uses: actions/checkout@v4
 
@@ -85,9 +85,14 @@ jobs:
         with:
           swap-size-gb: 10
 
-      # This action checks-out your CONFIGSitory under $GITHUB_WORKSPACE, so your workflow can access it.
+      # This action checks-out your CONFIG directory under $GITHUB_WORKSPACE, so your workflow can access it.
       - name: 😄 Checkout
         uses: actions/checkout@v4
+
+      - name: Set git config
+        run: |
+          git config --global user.name ${{ github.actor }}
+          git config --global user.email ${{ github.actor }}@users.noreply.github.com
 
       # Install prerequisites for Ubuntu
       - name: ⭐ Install prerequisites
