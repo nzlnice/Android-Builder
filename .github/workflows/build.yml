@@ -132,11 +132,11 @@ jobs:
           path: |
             ${{ env.OUT_DIR }}
             ${{ env.CCACHE_DIR }}
-          key: cache-${{ env.KERNEL_NAME }}-${{env.HASH}}-${{ env.BUILD_DATE }}
+          key: cache-${{ env.KERNEL_NAME }}-${{env.KERNEL_DEVICE}}-${{env.HASH}}-${{ env.BUILD_DATE }}
           restore-keys: |
-            cache-${{ env.KERNEL_NAME }}-${{env.HASH}}-${{ env.BUILD_DATE }}
-            cache-${{ env.KERNEL_NAME }}-${{env.HASH}}-
-            cache-${{ env.KERNEL_NAME }}-
+            cache-${{ env.KERNEL_NAME }}-${{env.KERNEL_DEVICE}}-${{env.HASH}}-${{ env.BUILD_DATE }}
+            cache-${{ env.KERNEL_NAME }}-${{env.KERNEL_DEVICE}}-${{env.HASH}}-
+            cache-${{ env.KERNEL_NAME }}-${{env.KERNEL_DEVICE}}-
 
       - name: 🌟 Clone kernel source => (${{ env.KERNEL_REPO }})
         run: |
@@ -380,7 +380,7 @@ jobs:
         env:
           ARCH: ${{ steps.generate-args.outputs.ARCH }}
         with:
-          name: ${{ env.KERNEL_NAME }}-${{ env.BUILD_DATE }}-Image
+          name: ${{ env.KERNEL_NAME }}-${{env.KERNEL_DEVICE}}-${{ env.BUILD_DATE }}-Image
           path: ${{ env.OUT_DIR }}/arch/${{ env.ARCH }}/boot/Image
           if-no-files-found: ignore
           retention-days: 7
