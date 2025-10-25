@@ -35,7 +35,7 @@ jobs:
 
   Build-Kernel:
     name: "🐎 Build kernel"
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs:
       - Read-configuration
     strategy:
@@ -65,10 +65,15 @@ jobs:
       CONFIRM_RELEASE: ${{ matrix.CONFIG.AnyKernel3.release }}
 
       # Whether to enable KernelSU
-      ENABLE_KERNELSU: ${{ matrix.CONFIG.enableKernelSU }}
+      ENABLE_KERNELSU: ${{ matrix.CONFIG.KSU.enable }}
+      KERNELSU_VARIANT: ${{ matrix.CONFIG.KSU.Variant }}
+      ENABLE_KERNELSU_ExtPatch: ${{ matrix.CONFIG.KSU.ExtPatch }}
 
       # Whether to enable LXC docker
       ENABLE_LXC: ${{ matrix.CONFIG.enableLXC }}
+
+      # Whether to enable Baseband_Guard
+      ENABLE_BBG: ${{ matrix.CONFIG.enableBBG }}
 
       # Set output & ccache directory
       OUT_DIR: "${{ github.workspace }}/out"
@@ -227,6 +232,42 @@ jobs:
 
           echo "🤔 $args"
 
+      - name: Determine KSU Variant
+        id: determine-ksu-variant
+        if: ${{ env.ENABLE_KERNELSU == 'true' }}
+        run: |
+          input=$(echo "${{ env.KERNELSU_VARIANT }}" | tr '[:upper:]' '[:lower:]')
+          echo "🤔 Selected KernelSU variant: $input"
+          if [ "$input" == "official" ]; then
+            echo "KSU_VARIANT=tiann/KernelSU" >> $GITHUB_OUTPUT
+            echo "KSU_BRANCH=v0.9.5" >> $GITHUB_OUTPUT # the last one that support nongki
+            echo "Using Official KernelSU variant."
+          elif [ "$input" == "rksu" ]; then
+            echo "KSU_VARIANT=rsuntk/KernelSU" >> $GITHUB_OUTPUT
+            echo "KSU_BRANCH=main" >> $GITHUB_OUTPUT
+            echo "Using RKSU variant."
+          elif [ "$input" == "ycrksu" ]; then
+            echo "KSU_VARIANT=luyanci/KernelSU" >> $GITHUB_OUTPUT
+            echo "KSU_BRANCH=main" >> $GITHUB_OUTPUT
+            echo "Using YCRKSU variant."
+          elif [ "$input" == "sukisu" ]; then
+            echo "KSU_VARIANT=SukiSU-Ultra/SukiSU-Ultra" >> $GITHUB_OUTPUT
+            echo "KSU_BRANCH=nongki" >> $GITHUB_OUTPUT
+          elif [ "$input" == "next" ] || [ "$input" == "ksun" ]; then
+            echo "KSU_VARIANT=KernelSU-Next/KernelSU-Next" >> $GITHUB_OUTPUT
+            echo "KSU_BRANCH=next" >> $GITHUB_OUTPUT
+            echo "Using KernelSU-Next variant."
+          elif [ "$input" == "wild" ]; then
+            echo "KSU_VARIANT=WildKernels/Wild_KSU" >> $GITHUB_OUTPUT
+            echo "KSU_BRANCH=wild" >> $GITHUB_OUTPUT
+            echo "Using WildSU variant."
+          else
+            # fallback to official
+            echo "KSU_VARIANT=tiann/KernelSU" >> $GITHUB_OUTPUT
+            echo "KSU_BRANCH=v0.9.5" >> $GITHUB_OUTPUT
+            echo "Using Official KernelSU variant as fallback."
+          fi
+
       - name: 😋 Setup KernelSU
         working-directory: ${{ env.KERNEL_NAME }}
         env:
@@ -242,13 +283,26 @@ jobs:
           fi
 
           # Apply new KernelSU patches
-          curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
+          curl -LSs "https://raw.githubusercontent.com/${{ steps.determine-ksu-variant.outputs.KSU_VARIANT }}/${{ steps.determine-ksu-variant.outputs.KSU_BRANCH }}/kernel/setup.sh" | bash -s ${{ steps.determine-ksu-variant.outputs.KSU_BRANCH }}
 
           echo -e "CONFIG_KPROBES=y" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
           echo -e "CONFIG_HAVE_KPROBES=y" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
           echo -e "CONFIG_KPROBE_EVENTS=y" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
-
+          echo -e "CONFIG_KSU=y" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
+          if [ "${{ steps.determine-ksu-variant.outputs.KSU_VARIANT }}" == "KernelSU-Next/KernelSU-Next" ] || [ "${{ steps.determine-ksu-variant.outputs.KSU_VARIANT }}" == "WildKernels/Wild_KSU" ]; then
+            echo -e "CONFIG_KSU_KPROBES_HOOK=n" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
+          else
+            echo -e "CONFIG_KSU_MANUAL_HOOK=y" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
+          fi
           cat arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
+
+      - name: 😋 Setup KernelSU Ext Patch
+        working-directory: ${{ env.KERNEL_NAME }}
+        if: ${{ env.ENABLE_KERNELSU == 'true' &&       env.ENABLE_KERNELSU_ExtPatch == 'true'}}
+        run: |
+          wget -Opatcher https://github.com/luyanci/Android-kernel-utils/releases/download/v0.1/patcher-2204
+          chmod +x patcher
+          ./patcher
 
       - name: 😋 Setup LXC docker
         working-directory: ${{ env.KERNEL_NAME }}
@@ -292,6 +346,15 @@ jobs:
             git am -s < ${{ env.WORKSPACE }}/LXC/Patches/xt_qtaguid.patch
             echo "🎖️ Apply xt_qtaguid.patch"
           fi
+
+      - name: 😋 Setup Baseband_Guard
+        env:
+          ARCH: ${{ steps.generate-args.outputs.ARCH }}
+        working-directory: ${{ env.KERNEL_NAME }}
+        if: ${{ env.ENABLE_BBG == 'true' }}
+        run: |
+          wget -O- https://github.com/vc-teahouse/Baseband-guard/raw/main/setup.sh | bash -s main
+          echo -e "CONFIG_BBG=y" >> arch/${{ env.ARCH }}/configs/${{ env.KERNEL_DEFCONFIG_PATH }}
 
       - name: 👍 Start building the kernel
         working-directory: ${{ env.KERNEL_NAME }}
