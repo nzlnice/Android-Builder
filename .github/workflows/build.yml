@@ -2,6 +2,8 @@ name: Build kernels
 
 on:
   push:
+    branches:
+      - master
     paths:
       - ".github/workflows/build.yml"
   workflow_dispatch:
