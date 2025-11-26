@@ -2,10 +2,10 @@
   {
     "kernelSource": {
       "name": "MIUI",
-      "repo": "https://github.com/SlackerState/android_kernel_xiaomi_sm6150",
-      "branch": "phoenix-r-oss",
-      "device": "phoenix_ztc1997",
-      "defconfig": "vendor/phoenix_ztc1997_defconfig"
+      "repo": "https://github.com/nzlnice/kernel_lenovo_J607Z.git",
+      "branch": "test",
+      "device": "arnoz",
+      "defconfig": "vendor/arnoz_row_lte-perf_defconfig"
     },
     "enableCcache": true,
     "KSU": {
