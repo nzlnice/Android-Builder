@@ -3,7 +3,7 @@
     "kernelSource": {
       "name": "MIUI",
       "repo": "https://github.com/nzlnice/kernel_lenovo_J607Z.git",
-      "branch": "test",
+      "branch": "Dimension2",
       "device": "arnoz",
       "defconfig": "vendor/arnoz_defconfig"
     },
